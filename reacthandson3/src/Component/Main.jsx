@@ -14,6 +14,7 @@ function Main(){
     const updateName = (event) => {
         setName(event.target.value);
     }
+    
     const updateDepart = (event) => {
         setDepartment(event.target.value);
     }
@@ -29,13 +30,11 @@ function Main(){
             return [...values,["Name : ",name, " | " , "Department : " ,department, " | ","Rating : ",rating]]
 
         })
-
         setIsSubmit(true)
-    
     }
+
     function updateBack(){
-        setIsSubmit(false)
-        
+        setIsSubmit(false)   
     }
 
     return(
@@ -44,30 +43,31 @@ function Main(){
             {
                 isSubmit === false ?
                 <form onSubmit={handleSubmit}>
-                <label id = "naming">Name:</label>
-                <input type = "text" className= "name" value = {name} onChange= {updateName} required></input><br></br>
-                <label id = "depart">Department:</label>
-                <input type = "text" className="dep" value = {department} onChange = {updateDepart} required></input><br></br>
-                <label id = "rate">Rating:</label>
-                <input type = "number" className="rating" value = {rating} onChange = {updateRate} required></input><br></br>
-                <button id = "fsubmit">Submit</button><br></br>
-            </form> : null 
-            }
-        
+                    <label id = "naming">Name:</label>
+                    <input type = "text" className= "name" value = {name} onChange= {updateName} required></input><br></br>
+                    <label id = "depart">Department:</label>
+                    <input type = "text" className="dep" value = {department} onChange = {updateDepart} required></input><br></br>
+                    <label id = "rate">Rating:</label>
+                    <input type = "number" className="rating" value = {rating} onChange = {updateRate} required></input><br></br>
+                    <button id = "fsubmit">Submit</button><br></br>
+                </form> : 
+            <div>
+                <div className  = "box">
+                    {
+                    items.map((saveValue) => 
+                    {
+                        return <div className="boxItem">{saveValue}</div>
+                    })
+                    } 
 
-            <div className="box">
-                {
-                items.map((saveValue) => 
-                {
-                    return <div className="boxItem">{saveValue}</div>
-                })
-                }    
+                </div>
+                <button class = "backbut" onClick={updateBack}>Go Back</button>
             </div>
-            <button class = "backbut" onClick={updateBack}>Go Back</button>
-
+            }
 
         </div>
     );
 }
+
 
 export default Main
